@@ -12,7 +12,7 @@ state-transition substrate for decentralised cognitive systems.
 
 ---
 
-# 1. Introduction
+## 1. Introduction
 
 The EMP addresses the “Cognitive Split-Brain” problem by replacing autonomous agent
 discretion with a notarised transition algebra. EMP defines:
@@ -70,7 +70,7 @@ end note
 
 ---
 
-# 2. Terminology & Object Model
+## 2. Terminology & Object Model
 
 | Term | Definition |
 |------|------------|
@@ -82,9 +82,9 @@ end note
 
 ---
 
-# 3. Extended Finite State Machine (EFSM)
+## 3. Extended Finite State Machine (EFSM)
 
-## 3.1 EFSM Definition
+### 3.1 EFSM Definition
 
 ```text
 S = { PROPOSED,
@@ -115,7 +115,7 @@ EFSM tuple:
 EFSM = (S, I, T, PROPOSED, F)
 ```
 
-## 3.2 Transition Relation
+### 3.2 Transition Relation
 
 | Current State          | Input                       | Target State           | Guard / Condition              |
 | ---------------------- | --------------------------- | ---------------------- | ------------------------------ |
@@ -126,7 +126,7 @@ EFSM = (S, I, T, PROPOSED, F)
 | DISPUTE_OPEN           | ValidSealingCommit(retire)  | FACT_RETIRED           | Section 7 verification         |
 | DISPUTE_OPEN           | ValidSealingCommit(affirm)  | FACT_AFFIRMED          | Section 7 verification         |
 
-### 3.3 Formal Invariants
+#### 3.3 Formal Invariants
 
 ```text
 ∀ c ∈ Commits:
@@ -144,9 +144,9 @@ Any transition not in T MUST be rejected
 
 ---
 
-# 4. Gossip Protocol & Partition Semantics
+## 4. Gossip Protocol & Partition Semantics
 
-## 4.1 Message Structure (ABNF)
+### 4.1 Message Structure (ABNF)
 
 ```abnf
 gossip-packet       = signed-envelope
@@ -158,7 +158,7 @@ dispute-vector      = 1*(commit-hash)
 signature           = base64
 ```
 
-## 4.2 Invariants
+### 4.2 Invariants
 
 * **G-INV-0 (Monotonicity):**
   Nodes must not delete or hide received commits or dispute vectors
@@ -169,7 +169,7 @@ signature           = base64
 * **G-INV-3 (Conflict Propagation):**
   Contradictions freeze refs and propagate challenge immediately
 
-## 4.3 Partition Recovery Protocol
+### 4.3 Partition Recovery Protocol
 
 1. Accept gossip only; accumulate `PROPOSED` commits in quarantine
 2. Track `CONTRADICTION_DETECTED` locally
@@ -184,9 +184,9 @@ signature           = base64
 
 ---
 
-# 5. Desk / SQL-RBAC Interface
+## 5. Desk / SQL-RBAC Interface
 
-## 5.1 Guard Evaluation
+### 5.1 Guard Evaluation
 
 Transition `(P, R, C)` is valid if:
 
@@ -202,14 +202,14 @@ Transition `(P, R, C)` is valid if:
 
 ---
 
-# 6. Sealing Commits (Steel Roof)
+## 6. Sealing Commits (Steel Roof)
 
-## 6.1 Definition
+### 6.1 Definition
 
 * Moves `DISPUTE_OPEN` → `FACT_RETIRED` or `FACT_AFFIRMED`
 * Must be a direct child of the disputed commit
 
-## 6.2 Manifest (ABNF)
+### 6.2 Manifest (ABNF)
 
 ```abnf
 sealing-trailers =
@@ -220,14 +220,14 @@ sealing-trailers =
   "Quorum-Signatures:" json-array CRLF
 ```
 
-## 6.3 Quorum Semantics
+### 6.3 Quorum Semantics
 
 * Threshold: `ceil(N/2) + 1`
 * ≥1 signer with `FINALITY` permission
 * Signers must be active at transaction timestamp
 * Reject duplicate signatures
 
-## 6.4 Verification
+### 6.4 Verification
 
 * Canonical serialization (exclude quorum signatures)
 * SHA-512 hash verification
@@ -236,9 +236,9 @@ sealing-trailers =
 
 ---
 
-# 7. Formal Semantics & Machine Readability
+## 7. Formal Semantics & Machine Readability
 
-## 7.1 ABNF Grammar (Sealing Commit)
+### 7.1 ABNF Grammar (Sealing Commit)
 
 ```abnf
 sealing-commit     = git-commit-header sealing-trailers sealing-content
@@ -252,7 +252,7 @@ sealing-content =
   *(UTF8-NONASCII / %x20-7E)
 ```
 
-## 7.2 EMP Implementation Contract
+### 7.2 EMP Implementation Contract
 
 ```python
 class EmpImplementation:
@@ -271,7 +271,7 @@ class EmpImplementation:
 
 ---
 
-# 8. Security Considerations
+## 8. Security Considerations
 
 * Byzantine humans mitigated via N-of-M quorum
 * Partition recovery ensures deterministic reconciliation
@@ -280,7 +280,7 @@ class EmpImplementation:
 
 ---
 
-# 9. References
+## 9. References
 
 * Git object model and commit DAG
 * CRDTs and eventual consistency
@@ -289,9 +289,9 @@ class EmpImplementation:
 
 ---
 
-# 10. Appendix
+## 10. Appendix
 
-## 10.1 Pseudocode for Transition Verification
+### 10.1 Pseudocode for Transition Verification
 
 ```python
 def apply_transition(commit_hash: str, target_state: str, seal: Optional[GitCommit] = None) -> bool:
@@ -342,7 +342,7 @@ def apply_transition(commit_hash: str, target_state: str, seal: Optional[GitComm
 
 ---
 
-## 10.3 Sample Sealing Commit (Git commit message)
+### 10.3 Sample Sealing Commit (Git commit message)
 
 ```text
 tree e3f1a2...
@@ -374,7 +374,7 @@ Quorum-Signatures: [
 
 ---
 
-## 10.4 Temporal Bounds Definitions
+### 10.4 Temporal Bounds Definitions
 
 | Parameter      | Description                                                                            | Example Value |
 | -------------- | -------------------------------------------------------------------------------------- | ------------- |
