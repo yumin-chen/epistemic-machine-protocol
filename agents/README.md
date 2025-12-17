@@ -2,7 +2,6 @@
 
 > **First-Class Human Agent (FCHA):** *A human principal with `epistemicAuthority = Authoritative`, the only agent permitted to author factual commits. All other agents are epistemically advisory or synthetic.*
 
-
 We define agents by **four orthogonal axes**:
 
 | Axis                       | Values                                        | Purpose                                 |
@@ -13,6 +12,33 @@ We define agents by **four orthogonal axes**:
 | **4. Temporal Scope**      | `Ephemeral`, `Session`, `Persistent`          | How long does its authority last?       |
 
 These axes combine to yield **precise, composable agent roles**—each with normative EMP behavior.
+
+```mermaid
+flowchart TD
+    A[Agent] --> B[Identity Basis]
+    B --> B1[Human]
+    B --> B2[Desk]
+    B --> B3[AI]
+    B --> B4[Sensor]
+    B --> B5[Simulation]
+
+    A --> C[Epistemic Authority]
+    C --> C1[Authoritative\n→ FCHA only]
+    C --> C2[Advisory\n→ Desk, Meta-Agents]
+    C --> C3[Synthetic\n→ AI, Sensors]
+
+    A --> D[Commit Capability]
+    D --> D1[Committer\n→ FCHA, Desk]
+    D --> D2[Proposer\n→ Meta, AI, Sensors]
+    D --> D3[Observer\n→ Auditors]
+
+    style C1 fill:#d4f7e2,stroke:#2e7d32
+    style D1 fill:#e3f2fd,stroke:#1976d2
+    classDef fcha fill:#d4f7e2,stroke:#2e7d32;
+    class C1,D1 fcha;
+```
+
+*(Green = FCHA-only privileges)*
 
 ---
 
@@ -162,35 +188,3 @@ AND (required_source_type IS NULL OR source_type = required_source_type)
 > 🔔 **Critical RFC Statement**:
 > *EMP guarantees **traceability, contestability, and finality**, not truth. Epistemic authority resides solely in FCHAs, mediated by Desk.*
 
----
-
-## 6. Visual: Agent Taxonomy Tree (Mermaid)
-
-```mermaid
-flowchart TD
-    A[Agent] --> B[Identity Basis]
-    B --> B1[Human]
-    B --> B2[Desk]
-    B --> B3[AI]
-    B --> B4[Sensor]
-    B --> B5[Simulation]
-
-    A --> C[Epistemic Authority]
-    C --> C1[Authoritative\n→ FCHA only]
-    C --> C2[Advisory\n→ Desk, Meta-Agents]
-    C --> C3[Synthetic\n→ AI, Sensors]
-
-    A --> D[Commit Capability]
-    D --> D1[Committer\n→ FCHA, Desk]
-    D --> D2[Proposer\n→ Meta, AI, Sensors]
-    D --> D3[Observer\n→ Auditors]
-
-    style C1 fill:#d4f7e2,stroke:#2e7d32
-    style D1 fill:#e3f2fd,stroke:#1976d2
-    classDef fcha fill:#d4f7e2,stroke:#2e7d32;
-    class C1,D1 fcha;
-```
-
-*(Green = FCHA-only privileges)*
-
----
