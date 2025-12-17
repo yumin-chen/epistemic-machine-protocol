@@ -2,7 +2,7 @@
 Status: Draft
 Category: Architecture Design
 Tags: [Epistemic Integrity, Distributed State]
-Version: 0.1.0
+Version: 0.1.0.draft.0
 Date: 2025-12-17
 ---
 
