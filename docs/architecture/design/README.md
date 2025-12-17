@@ -35,6 +35,14 @@ to propagate even when truth cannot yet be finalized.
 
 It solves the **Cognitive Split-Brain Problem** — where autonomous agents (human or machine) hold conflicting beliefs without resolution — by replacing discretion with a **notarised transition algebra**.
 
+EMP is designed for distributed multi-agent systems where:
+- **States** represent factual / disputed / finalized epistemic conditions
+- **Transitions** are tightly controlled by roles, guards, and cryptographic proofs
+- **Agents** have formalised roles and rights
+- **Desks** enforce procedural authority without centralising power
+- **Conflict** is preserved as first-class, not erased
+- **Gossip & partition semantics** guarantee deterministic convergence
+
 
 ```mermaid
 %% Epistemic Machine Protocol EFSM
@@ -161,10 +169,10 @@ These assumptions collapse in:
 
 EMP provides:
 
-* **Witnessing** (who asserted what)
-* **Process** (how it was challenged)
-* **Resolution** (how disagreement ended)
-* **Memory** (what was held true at a time)
+- **Witnessing** (who asserted what)
+- **Process** (how it was challenged)
+- **Resolution** (how disagreement ended)
+- **Memory** (what was held true at a time)
 
 Truth remains *socially held*.
 
