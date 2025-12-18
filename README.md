@@ -2,7 +2,7 @@
 Status: Draft
 Category: Architecture Design
 Tags: [Epistemic Integrity, Distributed State]
-Version: 0.1.0
+Version: 0.1.0.draft.1
 Date: 2025-12-17
 ---
 
@@ -292,9 +292,35 @@ class EmpImplementation:
 
 ## 10. Formal Semantics & Inference Rules
 
-* ASCII math EFSM definitions
-* Commit state invariants
-* Contradiction & dispute rules
-* Sealing commit preconditions and transitions
-* Determinism and idempotence rules
-* Safety theorems: No Silent Forks, No Unauthorized Truth, Finality
+See [Architecture Design](./docs/architecture/design/README.md) for detailed EFSM definitions and inference rules: 
+
+- ASCII math EFSM definitions
+- Commit state invariants
+- Contradiction & dispute rules
+- Sealing commit preconditions and transitions
+- Determinism and idempotence rules
+- Safety theorems: No Silent Forks, No Unauthorized Truth, Finality
+
+## References
+
+1. **Distributed Systems**:
+   - Lamport, L. (1978). "Time, Clocks, and the Ordering of Events in a Distributed System"
+   - Fischer, M. et al. (1985). "Impossibility of Distributed Consensus with One Faulty Process"
+
+2. **Byzantine Fault Tolerance**:
+   - Castro, M. & Liskov, B. (1999). "Practical Byzantine Fault Tolerance"
+   - Distler, T. et al. (2011). "Resource-Efficient Byzantine Fault Tolerance"
+
+3. **CRDTs**:
+   - Shapiro, M. et al. (2011). "Conflict-free Replicated Data Types"
+   - Kleppmann, M. & Beresford, A. (2017). "A Conflict-Free Replicated JSON Datatype"
+
+4. **Hybrid Logical Clocks**:
+   - Kulkarni, S. et al. (2014). "Logical Physical Clocks and Consistent Snapshots in Globally Distributed Databases"
+
+5. **Epistemic Logic**:
+   - Halpern, J. & Moses, Y. (1990). "Knowledge and Common Knowledge in a Distributed Environment"
+
+6. **Indigenous Knowledge Systems**:
+   - Smith, L. T. (2012). "Decolonizing Methodologies: Research and Indigenous Peoples"
+   - Whyte, K. (2018). "Indigenous Science (Fiction) for the Anthropocene"
